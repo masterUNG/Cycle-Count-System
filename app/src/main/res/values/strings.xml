@@ -9,5 +9,8 @@
     <string name="user">User :</string>
     <string name="pass">Password :</string>
     <string name="re_pass">Re-Password :</string>
+    <string name="connected_ok">Internet OK</string>
+
+
 
 </resources>

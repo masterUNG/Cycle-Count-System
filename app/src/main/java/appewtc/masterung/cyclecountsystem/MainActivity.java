@@ -37,11 +37,13 @@ public class MainActivity extends AppCompatActivity {
         //Check Internet
         if (checkInternet()) {
             //Internet OK
-            Toast.makeText(this, "ต่อ Internet ได้ นะจร้า", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getResources().getString(R.string.connected_ok), Toast.LENGTH_SHORT).show();
 
         } else {
             // Internet False
-            Toast.makeText(this, "ต่อ Internet ไม่ได้ นะจร้า", Toast.LENGTH_SHORT).show();
+            MyAlert myAlert = new MyAlert(MainActivity.this, R.drawable.kon48,
+                    "Internet False", "Cannot Connected Internet");
+            myAlert.myDialog();
         }
 
 
