@@ -1,10 +1,14 @@
 package appewtc.masterung.cyclecountsystem;
 
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,7 +34,42 @@ public class MainActivity extends AppCompatActivity {
             }   // onClick
         });
 
+        //Check Internet
+        if (checkInternet()) {
+            //Internet OK
+            Toast.makeText(this, "ต่อ Internet ได้ นะจร้า", Toast.LENGTH_SHORT).show();
+
+        } else {
+            // Internet False
+            Toast.makeText(this, "ต่อ Internet ไม่ได้ นะจร้า", Toast.LENGTH_SHORT).show();
+        }
+
 
     }   // Main Method
+
+    private boolean checkInternet() {
+
+        try {
+
+            boolean bolInternet = false;
+            ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+            NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+
+            Log.d("6octV2", "networkInfo ==> " +(networkInfo != null));
+            Log.d("6octV2", "Connectd ==> " + networkInfo.isConnected());
+
+            if ((networkInfo != null) && (networkInfo.isConnected())) {
+                bolInternet = true;
+            }
+
+            Log.d("6octV2", "bolInternet  ==> " + bolInternet);
+
+            return bolInternet;
+
+        } catch (Exception e) {
+            return false;
+        }
+
+    }
 
 }   // Main Class
