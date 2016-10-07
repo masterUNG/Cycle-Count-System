@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
 
     //Explicit
     private Button signInButton, signUpButton, synButton;
+    private MyManage myManage;
 
 
     @Override
@@ -25,6 +26,9 @@ public class MainActivity extends AppCompatActivity {
         signInButton = (Button) findViewById(R.id.button);
         signUpButton = (Button) findViewById(R.id.button2);
         synButton = (Button) findViewById(R.id.button3);
+
+        //Request Database
+        myManage = new MyManage(MainActivity.this);
 
         //Sign Up Controller
         signUpButton.setOnClickListener(new View.OnClickListener() {
