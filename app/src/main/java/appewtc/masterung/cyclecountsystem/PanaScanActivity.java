@@ -19,7 +19,7 @@ public class PanaScanActivity extends AppCompatActivity {
     //Explicit
     private EditText editText;
     private ListView listView;
-    private Button button;
+    private Button button, addSQLiteButton;
     private ArrayList<String> stringArrayList;
 
     @Override
@@ -31,8 +31,28 @@ public class PanaScanActivity extends AppCompatActivity {
         editText = (EditText) findViewById(R.id.editText8);
         listView = (ListView) findViewById(R.id.my_listview);
         button = (Button) findViewById(R.id.button6);
+        addSQLiteButton = (Button) findViewById(R.id.button7);
 
         stringArrayList = new ArrayList<String>();
+
+        //addSQLiteButton
+        addSQLiteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Log.d("7octV5", "arrayList.size ==>  " + stringArrayList.size());
+                String[] strings = stringArrayList.toArray(new String[stringArrayList.size()]);
+                for (int i=0;i<strings.length;i+=1) {
+                    Log.d("7octV5", "strings(" + i + ")= " + strings[i]);
+                    MyManage myManage = new MyManage(PanaScanActivity.this);
+                    //myManage.addUserTABLE(strings[i])
+
+                }
+
+            }   // onClick
+        });
+
+
 
         //Button Controller
         button.setOnClickListener(new View.OnClickListener() {
