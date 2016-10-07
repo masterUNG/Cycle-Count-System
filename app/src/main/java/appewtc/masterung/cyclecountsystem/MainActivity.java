@@ -1,6 +1,7 @@
 package appewtc.masterung.cyclecountsystem;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -31,7 +32,8 @@ public class MainActivity extends AppCompatActivity {
         myManage = new MyManage(MainActivity.this);
 
         //Tester Add Value to SQLite
-        testAddValueToSQLite();
+        //testAddValueToSQLite();
+
 
 
         //Sign Up Controller
@@ -47,6 +49,10 @@ public class MainActivity extends AppCompatActivity {
             //Internet OK
             Toast.makeText(this, getResources().getString(R.string.connected_ok), Toast.LENGTH_SHORT).show();
 
+            //Delete userTABLE
+            deleteValueSQLite(MyManage.table_userTABLE);
+
+
         } else {
             // Internet False
             MyAlert myAlert = new MyAlert(MainActivity.this, R.drawable.kon48,
@@ -56,6 +62,14 @@ public class MainActivity extends AppCompatActivity {
 
 
     }   // Main Method
+
+    private void deleteValueSQLite(String strTable) {
+
+        SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
+                MODE_PRIVATE, null);
+        sqLiteDatabase.delete(strTable, null, null);
+
+    }
 
     private void testAddValueToSQLite() {
 
