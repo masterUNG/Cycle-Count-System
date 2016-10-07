@@ -30,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
         //Request Database
         myManage = new MyManage(MainActivity.this);
 
+        //Tester Add Value to SQLite
+        testAddValueToSQLite();
+
 
         //Sign Up Controller
         signUpButton.setOnClickListener(new View.OnClickListener() {
@@ -53,6 +56,14 @@ public class MainActivity extends AppCompatActivity {
 
 
     }   // Main Method
+
+    private void testAddValueToSQLite() {
+
+        myManage.addUserTABLE("Name", "idCard", "user", "pass", "position", "status");
+        myManage.addTb_CountTxns("124", "lotID", "Quan", "Price", "UOM", "Date", "status");
+        myManage.addTb_CountMst("111", "SheIl", "date", "Count", "Check", "status");
+
+    }
 
     private boolean checkInternet() {
 
