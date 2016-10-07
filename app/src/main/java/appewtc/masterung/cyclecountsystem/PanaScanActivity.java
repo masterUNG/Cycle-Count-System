@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -69,10 +70,27 @@ public class PanaScanActivity extends AppCompatActivity {
         stringArrayList.add(strReadCode);
         Log.d("7octV4", "arrayList ==> " + stringArrayList.size());
 
+        buildListView();
+
+    }   // createListView
+
+    private void buildListView() {
+
         ArrayAdapter<String> stringArrayAdapter = new ArrayAdapter<String>(PanaScanActivity.this,
                 android.R.layout.simple_list_item_1, stringArrayList);
         listView.setAdapter(stringArrayAdapter);
-    }   // createListView
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                stringArrayList.remove(i);
+                buildListView();
+
+            }   // onItmeClick
+        });
+
+    }
 
 
 }   // Main Class
