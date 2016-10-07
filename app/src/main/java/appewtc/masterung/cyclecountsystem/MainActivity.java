@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         //Request Database
         myManage = new MyManage(MainActivity.this);
 
+
         //Sign Up Controller
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
