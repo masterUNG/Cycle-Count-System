@@ -140,18 +140,9 @@ public class MainActivity extends AppCompatActivity {
                         "Welcome " + loginStrings[1],
                         Toast.LENGTH_SHORT).show();
 
-
             }
 
-
         }   // if
-
-
-
-
-
-
-
 
     }   // checkUserAnPass
 
