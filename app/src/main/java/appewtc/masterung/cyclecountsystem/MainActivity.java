@@ -140,6 +140,12 @@ public class MainActivity extends AppCompatActivity {
                         "Welcome " + loginStrings[1],
                         Toast.LENGTH_SHORT).show();
 
+                Intent intent = new Intent(MainActivity.this,
+                        ServiceCountActivity.class);
+                intent.putExtra("Login", loginStrings);
+                startActivity(intent);
+                finish();
+
             }
 
         }   // if
