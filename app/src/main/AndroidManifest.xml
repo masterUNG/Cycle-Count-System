@@ -19,7 +19,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".SignUpActivity" />
-        <activity android:name=".ServiceCountActivity"></activity>
+        <activity android:name=".ServiceCountActivity" />
+        <activity android:name=".PanaScanActivity"></activity>
     </application>
 
 </manifest>
