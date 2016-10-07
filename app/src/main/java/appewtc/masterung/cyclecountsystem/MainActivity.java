@@ -2,6 +2,7 @@ package appewtc.masterung.cyclecountsystem;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -28,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
     private MyManage myManage;
     private EditText userEditText, passwordEditText;
     private String userString, passwordString;
+    private String[] loginStrings;
+    private boolean userABoolean = true;
 
 
     @Override
@@ -94,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
                     myAlert.myDialog();
                 } else {
                     // No Space
-
+                    checkUserAnPass();
                 }
 
             }   // onClick
@@ -102,6 +105,44 @@ public class MainActivity extends AppCompatActivity {
 
 
     }   // Main Method
+
+    private void checkUserAnPass() {
+
+        //Read All SQLite
+        SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
+                MODE_PRIVATE, null);
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM userTABLE", null);
+        cursor.moveToFirst();
+        loginStrings = new String[cursor.getColumnCount()];
+
+        for (int i=0;i<cursor.getCount();i+=1) {
+
+            if (userString.equals(cursor.getString(cursor.getColumnIndex(MyManage.column_User)))) {
+
+               for (int i1=0;i1<loginStrings.length;i1+=1) {
+
+                   loginStrings[i1] = cursor.getString(i1);
+                   Log.d("7octV2", "loginString[" + i1 + "] = " + loginStrings[i1]);
+
+               }    // for
+                userABoolean = false; // User OK
+                Log.d("7octV2", "userABoolent ==> " + userABoolean);
+            } else if (userABoolean) {
+                // User False
+                MyAlert myAlert = new MyAlert(MainActivity.this, R.drawable.rat48,
+                        "User False", "No " + userString + " in my Database");
+                myAlert.myDialog();
+            } else if (true) {
+            } else {
+            }
+
+            cursor.moveToNext();
+        }   // for
+
+
+
+
+    }   // checkUserAnPass
 
     private class SynUser extends AsyncTask<String, Void, String> {
 
