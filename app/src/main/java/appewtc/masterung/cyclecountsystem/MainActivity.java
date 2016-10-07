@@ -111,33 +111,16 @@ public class MainActivity extends AppCompatActivity {
         //Read All SQLite
         SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
                 MODE_PRIVATE, null);
-        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM userTABLE", null);
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM userTABLE WHERE User = " + "'" + userString + "'", null);
         cursor.moveToFirst();
-        loginStrings = new String[cursor.getColumnCount()];
+        Log.d("7octV2", "cursor.getCont ==> " + cursor.getCount());
+        if (cursor.getCount() == 0) {
+            //User False
+        } else {
+            // User True
+        }
 
-        for (int i=0;i<cursor.getCount();i+=1) {
 
-            if (userString.equals(cursor.getString(cursor.getColumnIndex(MyManage.column_User)))) {
-
-               for (int i1=0;i1<loginStrings.length;i1+=1) {
-
-                   loginStrings[i1] = cursor.getString(i1);
-                   Log.d("7octV2", "loginString[" + i1 + "] = " + loginStrings[i1]);
-
-               }    // for
-                userABoolean = false; // User OK
-                Log.d("7octV2", "userABoolent ==> " + userABoolean);
-            } else if (userABoolean) {
-                // User False
-                MyAlert myAlert = new MyAlert(MainActivity.this, R.drawable.rat48,
-                        "User False", "No " + userString + " in my Database");
-                myAlert.myDialog();
-            } else if (true) {
-            } else {
-            }
-
-            cursor.moveToNext();
-        }   // for
 
 
 
